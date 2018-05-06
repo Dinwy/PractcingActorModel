@@ -1,7 +1,0 @@
-C:\Users\kaeni\Documents\Visual Studio 2017\Projects\PracticeActorModdel\PracticeActorModdel\obj\Debug\PracticeActorModdel.csprojResolveAssemblyReference.cache
-C:\Users\kaeni\Documents\Visual Studio 2017\Projects\PracticeActorModdel\PracticeActorModdel\obj\Debug\PracticeActorModdel.csproj.CoreCompileInputs.cache
-C:\Users\kaeni\Documents\Visual Studio 2017\Projects\PracticeActorModdel\PracticeActorModdel\bin\Debug\PracticeActorModdel.exe.config
-C:\Users\kaeni\Documents\Visual Studio 2017\Projects\PracticeActorModdel\PracticeActorModdel\bin\Debug\PracticeActorModdel.exe
-C:\Users\kaeni\Documents\Visual Studio 2017\Projects\PracticeActorModdel\PracticeActorModdel\bin\Debug\PracticeActorModdel.pdb
-C:\Users\kaeni\Documents\Visual Studio 2017\Projects\PracticeActorModdel\PracticeActorModdel\obj\Debug\PracticeActorModdel.exe
-C:\Users\kaeni\Documents\Visual Studio 2017\Projects\PracticeActorModdel\PracticeActorModdel\obj\Debug\PracticeActorModdel.pdb
