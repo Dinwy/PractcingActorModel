@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace PlayGround
+namespace Dinwy.Utils.ActorModel
 {
     public class Launcher
     {
@@ -10,20 +10,15 @@ namespace PlayGround
         public void Run()
         {
             var actorFactory = new ActorFactory();
-            var p1 = new Worker(actorFactory);
-            var p2 = new Worker(actorFactory);
-            var p3 = new Worker(actorFactory);
-            var m = new Manager(actorFactory);
+            var p1 = actorFactory.GetActor<Worker>(new Guid());
+            var m = actorFactory.GetActor<Manager>(new Guid());
 
             var data = new Counter(0);
 
             for (int j = 0; j < 1000; j++)
             {
                 Task.Run(() => m.SendMessage(p1, data));
-                Task.Run(() => m.SendMessage(p2, data));
-                Task.Run(() => m.SendMessage(p3, data));
                 Task.Run(() => m.SendMessage(p1, data));
-                Task.Run(() => m.SendMessage(p2, data));
             }
 
             Console.ReadLine();

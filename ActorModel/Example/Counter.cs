@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace PlayGround
+namespace Dinwy.Utils.ActorModel
 {
     public class Counter : IMessage
     {
