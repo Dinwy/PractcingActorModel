@@ -7,16 +7,9 @@ namespace Dinwy.Utils.ActorModel
 {
     public class Worker : Actor
     {
-        private Guid ManagerID { get; set; }
         public Counter Counter { get; private set; } = new Counter(0);
 
         public Worker() : base() { }
-
-        public Task SetManager(Guid guid)
-        {
-            ManagerID = guid;
-            return Task.CompletedTask;
-        }
 
         public override async Task GetMessage(IActor s, IMessage m)
         {
@@ -34,7 +27,7 @@ namespace Dinwy.Utils.ActorModel
             IMessage data;
             if (!MailBox.TryDequeue(out data))
             {
-                await Task.Delay(5);
+                await Task.Delay(3);
                 await ProcessMessage();
                 return;
             }

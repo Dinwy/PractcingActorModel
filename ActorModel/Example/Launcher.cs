@@ -13,15 +13,12 @@ namespace Dinwy.Utils.ActorModel
             var m = actorFactory.GetActor<Manager>(new Guid());
             var w1 = actorFactory.GetActor<Worker>(new Guid()) as Worker;
             var w2 = actorFactory.GetActor<Worker>(new Guid()) as Worker;
-            w1.SetManager(m.InstanceId);
-            w2.SetManager(m.InstanceId);
 
             var msg = new IncreaseCount(2);
 
             Task.Run(() =>
             {
-
-                for (int i = 0; i < 100; i++)
+                for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10000; j++)
                     {
