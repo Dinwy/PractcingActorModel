@@ -8,7 +8,7 @@ namespace Dinwy.Utils.ActorModel
     {
         public Dictionary<Guid, IActor> Actors = new Dictionary<Guid, IActor>();
 
-        public IActor GetActor<T>(Guid guid) where T : Actor
+        public IActor GetActor<T>(Guid guid) where T : Actor, new()
         {
             if (Actors.ContainsKey(guid))
             {
@@ -16,8 +16,16 @@ namespace Dinwy.Utils.ActorModel
             }
             else
             {
-                var actor = (T)Activator.CreateInstance(typeof(T), this);
-                Actors.Add(actor.InstanceId, actor);
+                var actor = new T();
+                try
+                {
+                    Actors.Add(actor.InstanceId, actor);
+                }
+                catch (Exception e) when (e is ArgumentException)
+                {
+                    throw e;
+                }
+
                 return actor;
             }
         }

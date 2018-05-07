@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Threading.Tasks;
 
 namespace Dinwy.Utils.ActorModel
@@ -6,13 +8,9 @@ namespace Dinwy.Utils.ActorModel
     public abstract class Actor : IActor
     {
         public Guid InstanceId { get; } = Guid.NewGuid();
-        public ActorFactory ActorFactory { get; private set; }
+        public ConcurrentQueue<IMessage> MailBox { get; } = new ConcurrentQueue<IMessage>();
 
-        public Actor(ActorFactory af)
-        {
-            ActorFactory = af;
-            af.Register(this);
-        }
+        public Actor() { }
 
         public virtual async Task SendMessage(IActor t, IMessage m)
         {
@@ -21,6 +19,7 @@ namespace Dinwy.Utils.ActorModel
 
         public virtual async Task GetMessage(IActor s, IMessage m)
         {
+            MailBox.Enqueue(m);
             await Task.CompletedTask;
         }
     }

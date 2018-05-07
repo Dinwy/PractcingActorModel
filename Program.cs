@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Dinwy.Utils.ActorModel;
 
-namespace PracticeActorModdel
+namespace PracticeActorModel
 {
     class Program
     {
