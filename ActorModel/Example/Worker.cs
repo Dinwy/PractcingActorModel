@@ -14,26 +14,33 @@ namespace Dinwy.Utils.ActorModel
         public override async Task GetMessage(IActor s, IMessage m)
         {
             await base.GetMessage(s, m);
-            await ProcessMessage();
+            await CheckMailBox();
         }
 
-        public async Task ProcessMessage()
+        public Task CheckMailBox()
         {
-            await IncreaseCounter();
-        }
-
-        private async Task IncreaseCounter()
-        {
+            if (MailBox.Count == 0) return Task.CompletedTask;
             IMessage data;
+
             if (!MailBox.TryDequeue(out data))
             {
-                await Task.Delay(3);
-                await ProcessMessage();
-                return;
+                return Task.CompletedTask;
             }
 
-            Interlocked.Add(ref Counter.Count, (data as IncreaseCount).Amount);
-            await Task.CompletedTask;
+            if (data is IncreaseCount)
+            {
+                IncreaseCounter(data as IncreaseCount);
+            }
+
+            return Task.CompletedTask;
+        }
+
+        private Task IncreaseCounter(IncreaseCount data)
+        {
+            // Interlocked.Add(ref Counter.Count, data.Amount);
+            Counter.Count += data.Amount;
+            Task.Run(async () => await CheckMailBox());
+            return Task.CompletedTask;
         }
     }
 }

@@ -16,16 +16,16 @@ namespace Dinwy.Utils.ActorModel
 
             var msg = new IncreaseCount(2);
 
-            Task.Run(() =>
+            Task.Run(async () =>
             {
                 for (int i = 0; i < 10; i++)
                 {
                     for (int j = 0; j < 10000; j++)
                     {
-                        Task.Run(() => m.SendMessage(w1, msg));
-                        Task.Run(() => m.SendMessage(w2, msg));
-                        Task.Run(() => m.SendMessage(w1, msg));
-                        Task.Run(() => m.SendMessage(w2, msg));
+                        await m.SendMessage(w1, msg);
+                        await m.SendMessage(w2, msg);
+                        await m.SendMessage(w1, msg);
+                        await m.SendMessage(w2, msg);
                     }
                 }
             });
